@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useCartStore } from "@/store";
-import { AddCartType } from "@/types/AddCartType";
+import { CartItemType } from "@/types/CartItemType";
 
 export default function AddCart({
   name,
@@ -10,7 +10,7 @@ export default function AddCart({
   image,
   unit_amount,
   quantity,
-}: AddCartType) {
+}: CartItemType) {
   const cartStore = useCartStore();
 
   const handleAddAddToCart = () => {

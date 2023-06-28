@@ -1,8 +1,9 @@
-import { AddCartType } from "@/types/AddCartType";
+import { CartItemType } from "@/types/CartItemType";
 
 export type CartStateType = {
   isOpen: boolean;
-  cart: AddCartType[];
+  cart: CartItemType[];
   toggleCart: () => void;
-  addProduct: (item: AddCartType) => void;
+  addProduct: (item: CartItemType) => void;
+  removeProduct: (item: CartItemType) => void;
 };
