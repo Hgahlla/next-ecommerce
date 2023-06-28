@@ -1,5 +1,6 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import Hydrate from "@/app/components/Hydrate";
 import Nav from "@/app/components/Nav";
 import "./globals.css";
 
@@ -18,8 +19,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Nav user={session?.user} expires={session?.expires as string} />
-        {children}
+        <Hydrate>
+          <Nav user={session?.user} expires={session?.expires as string} />
+          {children}
+        </Hydrate>
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import AddCart from "@/app/product/[id]/AddCart";
 import formatPrice from "@/utils/formatPrice";
 import { SearchParamsTypes } from "@/types/SearchParamsType";
 
@@ -23,9 +24,7 @@ export default async function Product({ searchParams }: SearchParamsTypes) {
           </p>
         </div>
 
-        <button className="my-12 rounded-md bg-teal-700 px-6 py-2 font-medium text-white">
-          Add to cart
-        </button>
+        <AddCart {...searchParams} />
       </div>
     </div>
   );
