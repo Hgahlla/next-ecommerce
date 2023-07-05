@@ -23,12 +23,18 @@ export default function Cart() {
       onClick={() => cartStore.toggleCart()}
       className="fixed left-0 top-0 h-screen w-full bg-black/25"
     >
+      {/* Cart */}
       <motion.div
         layout
         onClick={(e) => e.stopPropagation()}
-        className="absolute right-0 top-0 h-screen w-1/4 overflow-y-scroll bg-white p-14 text-gray-700"
+        className="absolute right-0 top-0 h-screen w-full overflow-y-scroll bg-white p-14 text-gray-700 lg:w-2/5"
       >
-        <h1>Here's your shopping list 📃</h1>
+        <button
+          onClick={() => cartStore.toggleCart()}
+          className="pb-12 text-sm font-bold"
+        >
+          Back to store 🏃‍♂️
+        </button>
 
         {/* Cart Items */}
         {cartStore.cart.map((item) => (

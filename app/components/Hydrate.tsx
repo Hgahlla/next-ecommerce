@@ -10,5 +10,13 @@ export default function Hydrate({ children }: { children: ReactNode }) {
     setIsHydrated(true);
   }, []);
 
-  return <>{isHydrated ? <>{children}</> : <div>Loading...</div>}</>;
+  return (
+    <>
+      {isHydrated ? (
+        <body className="font-roboto px-4 lg:px-48">{children}</body>
+      ) : (
+        <body></body>
+      )}
+    </>
+  );
 }
