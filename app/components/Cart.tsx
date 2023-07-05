@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { IoAddCircle, IoRemoveCircle } from "react-icons/io5";
+import { motion, AnimatePresence } from "framer-motion";
 import { useCartStore } from "@/store";
 import formatPrice from "@/utils/formatPrice";
 import basket from "@/public/basket.png";
@@ -15,11 +16,15 @@ export default function Cart() {
   }, 0);
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       onClick={() => cartStore.toggleCart()}
       className="fixed left-0 top-0 h-screen w-full bg-black/25"
     >
-      <div
+      <motion.div
+        layout
         onClick={(e) => e.stopPropagation()}
         className="absolute right-0 top-0 h-screen w-1/4 overflow-y-scroll bg-white p-14 text-gray-700"
       >
@@ -27,7 +32,7 @@ export default function Cart() {
 
         {/* Cart Items */}
         {cartStore.cart.map((item) => (
-          <div className="flex gap-4 py-4">
+          <motion.div layout key={item.id} className="flex gap-4 py-4">
             <Image
               className="h-24 rounded-md"
               src={item.image}
@@ -74,28 +79,37 @@ export default function Cart() {
                 {item.unit_amount && formatPrice(item.unit_amount)}
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
 
         {/* Checkout and total */}
-        {cartStore.cart.length > 0 && <p>Total: {formatPrice(totalPrice)}</p>}
         {cartStore.cart.length > 0 && (
-          <button className="mt-4 w-full rounded-md bg-teal-700 py-2 text-white">
-            Checkout
-          </button>
+          <motion.div layout>
+            <p>Total: {formatPrice(totalPrice)}</p>
+            <button className="mt-4 w-full rounded-md bg-teal-700 py-2 text-white">
+              Checkout
+            </button>
+          </motion.div>
         )}
-        {!cartStore.cart.length && (
-          <div className="flex flex-col items-center gap-12 pt-56 text-2xl font-medium opacity-75">
-            <h1>It's empty 😢</h1>
-            <Image
-              src={basket}
-              alt="Empty Cart"
-              width={200}
-              height={200}
-            ></Image>
-          </div>
-        )}
-      </div>
-    </div>
+        <AnimatePresence>
+          {!cartStore.cart.length && (
+            <motion.div
+              initial={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
+              animate={{ scale: 1, rotateZ: 0, opacity: 0.75 }}
+              exit={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
+              className="flex flex-col items-center gap-12 pt-56 text-2xl font-medium opacity-75"
+            >
+              <h1>It's empty 😢</h1>
+              <Image
+                src={basket}
+                alt="Empty Cart"
+                width={200}
+                height={200}
+              ></Image>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </motion.div>
   );
 }
