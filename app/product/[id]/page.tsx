@@ -5,12 +5,13 @@ import { SearchParamsTypes } from "@/types/SearchParamsType";
 
 export default async function Product({ searchParams }: SearchParamsTypes) {
   return (
-    <div className="flex justify-between gap-24 p-12 text-gray-700">
+    <div className="flex flex-col items-center justify-between gap-24 text-gray-700 2xl:flex-row">
       <Image
         src={searchParams.image}
         alt={searchParams.name}
         width={600}
         height={600}
+        className="w-full rounded-lg"
       />
 
       <div className="font-medium">
