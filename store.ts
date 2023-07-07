@@ -8,6 +8,8 @@ export const useCartStore = create<CartStateType>()(
       cart: [],
       isOpen: false,
       toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
+      paymentIntent: "",
+      onCheckout: "cart",
       addProduct: (item) =>
         set((state) => {
           //Check if the item exists and increment quantity by 1
@@ -51,6 +53,9 @@ export const useCartStore = create<CartStateType>()(
             return { cart: filteredCart };
           }
         }),
+      setPaymentIntent: (val) => set((state) => ({ paymentIntent: val })),
+      setCheckout: (val) => set((state) => ({ onCheckout: val })),
+      clearCart: () => set((state) => ({ cart: [] })),
     }),
     { name: "cart-store" }
   )
