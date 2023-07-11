@@ -22,20 +22,30 @@ export default function Cart() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={() => cartStore.toggleCart()}
-      className="fixed left-0 top-0 h-screen w-full bg-black/25"
+      className="fixed top-0 left-0 w-full h-screen bg-black/25"
     >
       {/* Cart */}
       <motion.div
         layout
         onClick={(e) => e.stopPropagation()}
-        className="absolute right-0 top-0 h-screen w-full overflow-y-scroll bg-white p-14 text-gray-700 lg:w-2/5"
+        className="absolute top-0 right-0 w-full h-screen overflow-y-scroll text-gray-700 bg-white p-14 lg:w-2/5"
       >
-        <button
-          onClick={() => cartStore.toggleCart()}
-          className="pb-12 text-sm font-bold"
-        >
-          Back to store 🏃‍♂️
-        </button>
+        {cartStore.onCheckout === "cart" && (
+          <button
+            onClick={() => cartStore.toggleCart()}
+            className="pb-12 text-sm font-bold"
+          >
+            Back to store 🏃
+          </button>
+        )}
+        {cartStore.onCheckout === "checkout" && (
+          <button
+            onClick={() => cartStore.setCheckout("cart")}
+            className="pb-12 text-sm font-bold"
+          >
+            Check your cart 🛒
+          </button>
+        )}
 
         {/* Cart Items */}
         {cartStore.onCheckout === "cart" && (
@@ -94,17 +104,17 @@ export default function Cart() {
         )}
 
         {/* Checkout and total */}
-        {cartStore.cart.length > 0 && (
+        {cartStore.cart.length > 0 && cartStore.onCheckout === "cart" ? (
           <motion.div layout>
             <p>Total: {formatPrice(totalPrice)}</p>
             <button
               onClick={() => cartStore.setCheckout("checkout")}
-              className="mt-4 w-full rounded-md bg-teal-700 py-2 text-white"
+              className="w-full py-2 mt-4 text-white bg-teal-700 rounded-md"
             >
               Checkout
             </button>
           </motion.div>
-        )}
+        ) : null}
 
         {/* Checkout Form */}
         {cartStore.onCheckout === "checkout" && <Checkout />}
