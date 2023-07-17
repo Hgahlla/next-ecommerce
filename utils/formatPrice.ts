@@ -1,8 +1,10 @@
-const formatPrice = (amount: number) => {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(amount / 100);
+const formatPrice = (amount: number | null) => {
+  if (typeof amount === "number") {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(amount / 100);
+  }
 };
 
 export default formatPrice;
