@@ -20,7 +20,6 @@ export default function Dashboard() {
   useEffect(() => {
     fetchOrders()
       .then((data) => {
-        console.log(data);
         setOrders(data);
         setLoading(false);
       })
