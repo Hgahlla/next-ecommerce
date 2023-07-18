@@ -11,7 +11,11 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        fluid: "repeat(auto-fit, minmax(20rem, 1fr))",
+        fluid: "repeat(auto-fit, minmax(20rem,1fr))",
+      },
+      fontFamily: {
+        lobster: ["var(--font-lobster)"],
+        roboto: ["var(--font-roboto)"],
       },
     },
   },
