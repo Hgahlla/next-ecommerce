@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { CartStateType } from "@/types/CartStateType";
+import { ThemeStateType } from "@/types/ThemeStateType";
 
 export const useCartStore = create<CartStateType>()(
   persist(
@@ -58,5 +59,15 @@ export const useCartStore = create<CartStateType>()(
       clearCart: () => set((state) => ({ cart: [] })),
     }),
     { name: "cart-store" }
+  )
+);
+
+export const useThemeStore = create<ThemeStateType>()(
+  persist(
+    (set) => ({
+      mode: "light",
+      toggleMode: (theme) => set((state) => ({ mode: theme })),
+    }),
+    { name: "theme-store" }
   )
 );
