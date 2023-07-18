@@ -18,12 +18,12 @@ export default function Nav({ user }: Session) {
         <h1>Styled</h1>
       </Link>
       {/* Toggle the cart */}
-      <ul
-        onClick={() => cartStore.toggleCart()}
-        className="flex items-center gap-12"
-      >
+      <ul className="flex items-center gap-12">
         {/* Toggle the cart */}
-        <li className="relative flex cursor-pointer items-center text-3xl">
+        <li
+          onClick={() => cartStore.toggleCart()}
+          className="relative flex cursor-pointer items-center text-3xl"
+        >
           <AiFillShopping />
         </li>
         <AnimatePresence>
@@ -32,7 +32,7 @@ export default function Nav({ user }: Session) {
               animate={{ scale: 1 }}
               initial={{ scale: 0 }}
               exit={{ scale: 0 }}
-              className="absolute bottom-4 left-4 flex h-5 w-5 items-center justify-center rounded-full bg-teal-700 text-sm font-bold text-white"
+              className="absolute bottom-4 left-4 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-sm font-bold text-white"
             >
               {cartStore.cart.length}
             </motion.span>
@@ -40,7 +40,7 @@ export default function Nav({ user }: Session) {
         </AnimatePresence>
         {/* If the user is not signed in */}
         {!user && (
-          <li className="rounded-md bg-teal-600 px-4 py-2 text-white">
+          <li className="rounded-md bg-primary px-4 py-2 text-white">
             <button onClick={() => signIn()}>Sign in</button>
           </li>
         )}

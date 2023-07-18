@@ -23,13 +23,13 @@ export default function Cart() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={() => cartStore.toggleCart()}
-      className="fixed top-0 left-0 w-full h-screen bg-black/25"
+      className="fixed left-0 top-0 h-screen w-full bg-black/25"
     >
       {/* Cart */}
       <motion.div
         layout
         onClick={(e) => e.stopPropagation()}
-        className="absolute top-0 right-0 w-full h-screen overflow-y-scroll text-gray-700 bg-white p-14 lg:w-2/5"
+        className="absolute right-0 top-0 h-screen w-full overflow-y-scroll bg-white p-14 text-gray-700 lg:w-2/5"
       >
         {cartStore.onCheckout === "cart" && (
           <button
@@ -110,7 +110,7 @@ export default function Cart() {
             <p>Total: {formatPrice(totalPrice)}</p>
             <button
               onClick={() => cartStore.setCheckout("checkout")}
-              className="w-full py-2 mt-4 text-white bg-teal-700 rounded-md"
+              className="mt-4 w-full rounded-md bg-primary py-2 text-white"
             >
               Checkout
             </button>

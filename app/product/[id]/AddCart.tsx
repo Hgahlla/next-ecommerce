@@ -12,18 +12,24 @@ export default function AddCart({
   quantity,
 }: CartItemType) {
   const cartStore = useCartStore();
+  const [added, setAdded] = useState(false);
 
   const handleAddAddToCart = () => {
     cartStore.addProduct({ id, name, unit_amount, quantity, image });
+    setAdded(true);
+    setTimeout(() => {
+      setAdded(false);
+    }, 500);
   };
 
   return (
     <>
       <button
         onClick={handleAddAddToCart}
-        className="my-12 rounded-md bg-teal-700 px-6 py-2 font-medium text-white"
+        disabled={added}
+        className="btn-primary btn my-4 w-full"
       >
-        Add to cart
+        {!added ? <span>Add to cart</span> : <span>Adding to cart</span>}
       </button>
     </>
   );

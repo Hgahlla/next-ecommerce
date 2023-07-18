@@ -39,7 +39,7 @@ export default function Dashboard() {
         {orders.map((order) => (
           <div
             key={order.id}
-            className="bg-base-200 my-4 space-y-2 rounded-lg p-8"
+            className="my-4 space-y-2 rounded-lg bg-base-200 p-8"
           >
             <h2 className="text-xs font-medium">Order reference: {order.id}</h2>
             <p className="text-xs">
