@@ -15,10 +15,9 @@ export default function Nav({ user }: Session) {
 
   return (
     <nav className="flex items-center justify-between py-12">
-      <Link href="/">
+      <Link href={"/"}>
         <h1 className="font-lobster text-xl">Styled</h1>
       </Link>
-      {/* Toggle the cart */}
       <ul className="flex items-center gap-8">
         {/* Toggle the cart */}
         <li
@@ -26,19 +25,19 @@ export default function Nav({ user }: Session) {
           className="relative flex cursor-pointer items-center text-3xl"
         >
           <AiFillShopping />
+          <AnimatePresence>
+            {cartStore.cart.length > 0 && (
+              <motion.span
+                animate={{ scale: 1 }}
+                initial={{ scale: 0 }}
+                exit={{ scale: 0 }}
+                className="absolute bottom-4 left-4 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-sm font-bold text-white"
+              >
+                {cartStore.cart.length}
+              </motion.span>
+            )}
+          </AnimatePresence>
         </li>
-        <AnimatePresence>
-          {cartStore.cart.length > 0 && (
-            <motion.span
-              animate={{ scale: 1 }}
-              initial={{ scale: 0 }}
-              exit={{ scale: 0 }}
-              className="absolute bottom-4 left-4 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-sm font-bold text-white"
-            >
-              {cartStore.cart.length}
-            </motion.span>
-          )}
-        </AnimatePresence>
 
         {/* {Dark Mode} */}
         <DarkLight />
